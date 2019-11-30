@@ -1,1 +1,5 @@
-<h2><?php _e('Dashboard', 'klantenvertellen'); ?></h2>
+<div class="wrap">
+    <h1 class="wp-heading-inline">
+        <?php _e('Dashboard', 'klantenvertellen'); ?>
+    </h1>
+</div>
