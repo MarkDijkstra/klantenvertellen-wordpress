@@ -1,2 +1,2 @@
-# xml-to-db-wp
+# Klantenvertellen Wordpress (WIP)
 Wordpress plugin 
