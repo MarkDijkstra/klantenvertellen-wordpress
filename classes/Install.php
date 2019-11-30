@@ -22,44 +22,57 @@ if(!class_exists('WP_Klantenvertellen_Install'))
 			
 			global $wpdb;
 			
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
-			
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');			
 
-			$table1 = $wpdb->prefix . parent::KVSETTINGSTABLE;
+			$table1 = $wpdb->prefix . parent::KVCOMPANYTABLE;
 			$table2 = $wpdb->prefix . parent::KVREVIEWSTABLE;
-			     
 			
-			//build
+			
+			$sql = "CREATE TABLE IF NOT EXISTS $table1(
+					  `id` int(11) NOT NULL AUTO_INCREMENT,
+					  `averagerating` int(11) NOT NULL,
+					  `numberreviews` bigint(8) NOT NULL,					  				  
+					  `last12monthaverageaating` int(11) NOT NULL,
+					  `last12nonthnumberreviews` int(11) NOT NULL,
+					  `percentagerecommendation` int(11) NOT NULL,
+					  `locationid` varchar(255) NOT NULL,
+					  `locationname` varchar(255) NOT NULL,						  
+					  `url` varchar(255) NOT NULL,
+					  `added` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+					  `updated` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',	
+					  PRIMARY KEY (`id`)
+					);";
+
+			dbDelta($sql); 
 
 
-			}
+		}
 			
-			
-			/**
-			* ADD DATABASE VERSION.
-			* 
-			* This will save the plugin database version to the 'wp_options' table.
-			*
-			* @since : 1.0.0
-			*/
-			public static function databaseVersion()
-			{
-				add_option(parent::KVDBVERSIONNAME , parent::KVDBVERSION);
-			}
-			
-			/**
-			* COMBINED INSTALL OBJECTS.
-			* 
-			* Make it all happen at once's.
-			*
-			* @since : 1.0.0
-			*/
-			public static function install()
-			{
-				//self::databaseTables();
-				self::databaseVersion();
-			}
-	
+		/**
+		* ADD DATABASE VERSION.
+		* 
+		* This will save the plugin database version to the 'wp_options' table.
+		*
+		* @since : 1.0.0
+		*/
+		public static function databaseVersion()
+		{
+			add_option(parent::KVDBVERSIONNAME , parent::KVDBVERSION);
+		}
+
+		/**
+		* COMBINED INSTALL OBJECTS.
+		* 
+		* Make it all happen at once's.
+		*
+		* @since : 1.0.0
+		*/
+		public static function install()
+		{
+			self::databaseTables();
+			self::databaseVersion();
 		}
 
 	}
+
+}

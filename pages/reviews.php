@@ -1,5 +1,7 @@
 <div class="wrap">
-    <h1 class="wp-heading-inline"><?php _e('Reviews', 'klantenvertellen'); ?></h1>
+    <h1 class="wp-heading-inline">
+        <?php _e('Reviews', 'klantenvertellen'); ?>
+    </h1>
     <br/>
     <br/>
     <form action="<?php esc_url( $_SERVER['REQUEST_URI'] ) ?>" method="post">
@@ -11,9 +13,21 @@
                     <input type="text" id="field-1" name=""/>
                 </div>
                 <br/>
-                <button type="submit" class="button button-primary">Save</button>
+                <button type="submit" class="button button-primary" name="kv-submit">Save</button>
             </div>
         </div>
 
     </form>
 </div>
+
+
+<?php
+    
+    //process the data 
+    
+    if ( isset( $_POST['kv-submit'] ) ) {
+        
+        
+        //WP_Klantenvertellen_Process::processUrl();
+        
+    }

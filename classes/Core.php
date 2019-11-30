@@ -113,7 +113,7 @@ if(!class_exists('WP_Klantenvertellen_Core')) {
 			
 			// documentation
 			if ($userLevelReviews <= $userLevel) { 
-				add_submenu_page($this->pluginSlug, $this->nameReviews, $this->nameReviews, 1, $this->ReviewsSlug, array($this, 'pageReviews'));  
+				add_submenu_page($this->pluginSlug, $this->nameReviews, $this->nameReviews, 1, $this->reviewsSlug, array($this, 'pageReviews'));  
 			} else {
 				remove_submenu_page($this->pluginSlug, $this->reviewsSlug); 
 			}

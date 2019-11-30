@@ -13,7 +13,7 @@ if(!class_exists('WP_Klantenvertellen_Database'))
 		//move this to add better location like a settings class
 		const KVDBVERSION     = '1.0.0';		
 		const KVDBVERSIONNAME = 'klantenvertellen_db_version';
-		const KVSETTINGSTABLE = 'klantenvertellen_settings';
+		const KVCOMPANYTABLE  = 'klantenvertellen_company';
 		const KVREVIEWSTABLE  = 'klantenvertellen_reviews';
 
 	}
