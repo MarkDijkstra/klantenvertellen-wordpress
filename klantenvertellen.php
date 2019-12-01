@@ -13,7 +13,7 @@ Author URI:
 include_once(dirname( __FILE__ ).'/classes/Core.php');
 include_once(dirname( __FILE__ ).'/classes/Database.php');	
 include_once(dirname( __FILE__ ).'/classes/Install.php');
-//include_once(dirname( __FILE__ ).'/classes/uninstall.php');
+include_once(dirname( __FILE__ ).'/classes/Uninstall.php');
 include_once(dirname( __FILE__ ).'/classes/Core.php');
 include_once(dirname( __FILE__ ).'/classes/Process.php');
 

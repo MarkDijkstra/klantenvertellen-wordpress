@@ -13,6 +13,7 @@ if(!class_exists('WP_Klantenvertellen_Core')) {
 		public $menuIcon;
 		public $pluginDirName = 'klantenvertellen-wordpress';
 		public $pluginName    = 'Klantenvertellen';
+		public $pluginSlug    = 'klantenvertellen';  
 		public $dashboardSlug = 'klantenvertellen-welcome';
 		public $reviewsSlug   = 'klantenvertellen-reviews';
 		public $docsSlug      = 'klantenvertellen-documentation';
@@ -70,7 +71,7 @@ if(!class_exists('WP_Klantenvertellen_Core')) {
 		{
 
             // Localization
-            load_plugin_textdomain($this->mopoName, false, basename(dirname( __FILE__ )).'/languages/');
+            //load_plugin_textdomain($this->mopoName, false, basename(dirname( __FILE__ )).'/languages/');
         }
 
 

@@ -13,12 +13,15 @@ if(!class_exists('WP_Powertour_Uninstall'))
 
 		public static function emptyTable($table)
 		{
+			
 			global $wpdb;
 
 			if ($table == 'company') {
-				$turnTable = $wpdb->prefix.parent::KVCOMPANYTABLE;
+				$turnTable = $wpdb->prefix . parent::KVCOMPANYTABLE;
 			} elseif ($table == 'reviews') {
-				$turnTable = $wpdb->prefix.parent::KVREVIEWSTABLE;
+				$turnTable = $wpdb->prefix . parent::KVREVIEWSTABLE;
+			}else{
+				$turnTable = '';
 			}
 
 			$wpdb->query("TRUNCATE TABLE $turnTable");
@@ -35,6 +38,9 @@ if(!class_exists('WP_Powertour_Uninstall'))
 		*/
 		public static function uninstallDatabase()
 		{
+			
+			global $wpdb;
+			
 			$table1 = $wpdb->prefix.parent::KVCOMPANYTABLE;
 			$table2 = $wpdb->prefix.parent::KVREVIEWSTABLE;
 		
