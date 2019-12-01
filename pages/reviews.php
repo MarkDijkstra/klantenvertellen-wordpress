@@ -1,24 +1,18 @@
 <?php
-    
-    
-    //process the data     
+   
     if ( isset( $_POST['submit'] ) && !empty($_POST['xmlsource'])) {        
         
-        WP_Klantenvertellen_Process::processUrl($_POST['xmlsource']);
+        WP_Klantenvertellen_Process::processSource($_POST['xmlsource']);
 
         ?>
 
         <div id="message" class="updated notice is-dismissible">
-            <p>Saved.</p><button type="button" class="notice-dismiss">
+            <p><?php _e('Reviews opgeslagen', 'klantenvertellen'); ?></p><button type="button" class="notice-dismiss">
             <span class="screen-reader-text">Dismiss this notice.</span></button>
         </div>
 
-<?php
-        
-    }
+<?php } ?>
 
-
-?>
 <div class="wrap">
     <h1 class="wp-heading-inline">
         <?php _e('Reviews', 'klantenvertellen'); ?>

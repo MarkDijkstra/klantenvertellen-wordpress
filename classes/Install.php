@@ -26,7 +26,7 @@ if(!class_exists('WP_Klantenvertellen_Install'))
 
 			$table1 = $wpdb->prefix . parent::KVCOMPANYTABLE;
 			$table2 = $wpdb->prefix . parent::KVREVIEWSTABLE;
-			
+			$table3 = $wpdb->prefix . parent::KVCONTENTTABLE;
 			
 			$sql = "CREATE TABLE IF NOT EXISTS $table1(
 					  `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -45,6 +45,33 @@ if(!class_exists('WP_Klantenvertellen_Install'))
 
 			dbDelta($sql); 
 
+			$sql = "CREATE TABLE IF NOT EXISTS $table2(
+					  `id` int(11) NOT NULL AUTO_INCREMENT,
+					  `locationid` varchar(255) NOT NULL,
+					  `reviewid` varchar(255) NOT NULL,
+					  `reviewauthor` varchar(255) NOT NULL,					  				  
+					  `city` varchar(255) NOT NULL,
+					  `rating` varchar(255) NOT NULL,					  
+					  `datesince` varchar(255) NOT NULL,
+					  `updatedsince` varchar(255) NOT NULL,
+					  PRIMARY KEY (`id`)
+					);";
+
+			dbDelta($sql);
+			
+			$sql = "CREATE TABLE IF NOT EXISTS $table3(
+					  `id` int(11) NOT NULL AUTO_INCREMENT,					  
+					  `reviewid` varchar(255) NOT NULL,
+					  `questiongroup` varchar(255) NOT NULL,					  				  
+					  `questiontype` varchar(255) NOT NULL,
+					  `rating` int(11) NOT NULL,	
+					  `order` int(11) NOT NULL,					  
+					  `questiontranslation` varchar(255) NOT NULL,
+					  `notapplicable` varchar(255) NULL,
+					  PRIMARY KEY (`id`)
+					);";
+
+			dbDelta($sql); 
 
 		}
 			
@@ -62,8 +89,6 @@ if(!class_exists('WP_Klantenvertellen_Install'))
 
 		/**
 		* COMBINED INSTALL OBJECTS.
-		* 
-		* Make it all happen at once's.
 		*
 		* @since : 1.0.0
 		*/

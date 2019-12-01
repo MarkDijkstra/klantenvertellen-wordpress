@@ -20,7 +20,13 @@ if(!class_exists('WP_Powertour_Uninstall'))
 				$turnTable = $wpdb->prefix . parent::KVCOMPANYTABLE;
 			} elseif ($table == 'reviews') {
 				$turnTable = $wpdb->prefix . parent::KVREVIEWSTABLE;
-			}else{
+			} elseif ($table == 'content') {			
+			     $turnTable = $wpdb->prefix . parent::KVCONTENTTABLE;
+			} elseif ($table == 'all') {			
+			     $turnTable = $wpdb->prefix . parent::KVCONTENTTABLE . ',' . 
+					          $wpdb->prefix . parent::KVREVIEWSTABLE . ',' .
+							  $wpdb->prefix . parent::KVCONTENTTABLE;
+		    } else {				
 				$turnTable = '';
 			}
 
@@ -43,8 +49,10 @@ if(!class_exists('WP_Powertour_Uninstall'))
 			
 			$table1 = $wpdb->prefix.parent::KVCOMPANYTABLE;
 			$table2 = $wpdb->prefix.parent::KVREVIEWSTABLE;
+			$table3 = $wpdb->prefix.parent::KVCONTENTTABLE;
+			
 		
-            $wpdb->query("DROP TABLE $table1");// update
+            $wpdb->query("DROP TABLE $table1, $table2, $table3");
 			
 		}
 

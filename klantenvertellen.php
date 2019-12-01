@@ -16,6 +16,7 @@ include_once(dirname( __FILE__ ).'/classes/Install.php');
 include_once(dirname( __FILE__ ).'/classes/Uninstall.php');
 include_once(dirname( __FILE__ ).'/classes/Core.php');
 include_once(dirname( __FILE__ ).'/classes/Process.php');
+include_once(dirname( __FILE__ ).'/classes/Results.php');
 
 /*
 *  leave empty for now

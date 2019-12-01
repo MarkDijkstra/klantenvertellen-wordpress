@@ -15,6 +15,7 @@ if(!class_exists('WP_Klantenvertellen_Database'))
 		const KVDBVERSIONNAME = 'klantenvertellen_db_version';
 		const KVCOMPANYTABLE  = 'klantenvertellen_company';
 		const KVREVIEWSTABLE  = 'klantenvertellen_reviews';
+		const KVCONTENTTABLE  = 'klantenvertellen_content';
 
 	}
 	

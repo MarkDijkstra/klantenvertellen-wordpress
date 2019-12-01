@@ -10,13 +10,8 @@ if(!class_exists('WP_Klantenvertellen_Process'))
 	class WP_Klantenvertellen_Process extends WP_Klantenvertellen_Database
 	{
 		
-		
-		public static function processReviews($url)
-		{
-			
-		}
-		
-		public static function processCompany($url)
+
+		public static function processSource($url)
 		{
 			
 			
@@ -27,13 +22,15 @@ if(!class_exists('WP_Klantenvertellen_Process'))
 
 				
 				// for now we are goingin to delete instead of updating the row
-				WP_Powertour_Uninstall::emptyTable('company');
+				WP_Powertour_Uninstall::emptyTable('all');
 
 				global $wpdb;
 				
-				$table = $wpdb->prefix . parent::KVCOMPANYTABLE;
+				$table1 = $wpdb->prefix . parent::KVCOMPANYTABLE;
+				$table2 = $wpdb->prefix . parent::KVREVIEWSTABLE;
+				$table3 = $wpdb->prefix . parent::KVCONTENTTABLE;
 
-				$wpdb->insert($table,
+				$wpdb->insert($table1,
 						array(
 							'averagerating'            => $xml->averageRating,
 							'numberreviews'            => $xml->numberReviews, 
@@ -64,21 +61,62 @@ if(!class_exists('WP_Klantenvertellen_Process'))
 				);
 				
 				
-			}
-			
-		}
-		
-		public static function processUrl($url = false)
-		{
-			
-			if ($url !== false) {
-				self::processCompany($url);
-				//self::processReviews($url);
+				// id for reviews $xml->locationId
+				foreach($xml->reviews->reviews as $review){
+				
+					$wpdb->insert($table2,
+							array(
+								'locationid'   => $xml->locationId,//fix value
+								'reviewid'     => $review->reviewId, 
+								'reviewauthor' => $review->reviewAuthor, 
+								'city'         => $review->city, 
+								'rating'       => $review->rating, 
+								'datesince'    => $review->dateSince,
+								'updatedsince' => $review->updatedSince,
+							),
+							array(
+								'%s',
+								'%s',
+								'%s',
+								'%s',
+								'%d',
+								'%s',
+								'%s',
+							)
+
+					);
+					
+					foreach($review->reviewContent->reviewContent as $content){
+						
+						$wpdb->insert($table3,
+								array(
+									'reviewid'           => $review->reviewId,//fix value 
+									'questiongroup'      => $content->questionGroup,
+									'questiontype'       => $content->questionType, 
+									'rating'             => $content->rating, 
+									'order'              => $content->order, 
+									'questiontranslation'=> $content->questionTranslation, 
+									'notapplicable'      => isset($content->notApplicable) ? $content->notApplicable : NULL ,
+								),
+								array(
+									'%s',
+									'%s',
+									'%s',
+									'%s',
+									'%d',
+									'%s',
+									'%s',
+								)
+
+						);
+						
+					}
+
+				}
 				
 			}
 			
 		}
-		
 
 	}
 	
