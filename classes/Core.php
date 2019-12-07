@@ -32,7 +32,8 @@ if(!class_exists('WP_Klantenvertellen_Core')) {
 			$this->pluginDirPath  = WP_PLUGIN_DIR.'/' . $this->pluginDirName;
 			$this->pluginUrl      = plugins_url('/' . $this->pluginDirName);                                   
             $this->pluginPagesDir = $this->pluginDirPath . '/pages';
-			$this->adminCssPath  = plugins_url($this->pluginDirName . '/assets/css/admin.css');  
+			$this->adminCssPath   = plugins_url($this->pluginDirName . '/assets/css/admin.css');
+			$this->fontawesomePath= plugins_url($this->pluginDirName . '/assets/vendor/fontawesome/css/fontawesome.min.css');  
 			
 			$this->dashboardPage = $this->pluginPagesDir . '/dashboard.php';
 			$this->reviewsPage   = $this->pluginPagesDir . '/reviews.php';
@@ -82,7 +83,8 @@ if(!class_exists('WP_Klantenvertellen_Core')) {
 		* @since : 1.0.0
 		*/
 		public function addScriptsStylesAdmin(){
-			wp_enqueue_style('klantenvertellen-core-css', $this->adminCssPath, array(), $this->pluginVersion);
+			wp_enqueue_style('klantenvertellen-core-css', $this->adminCssPath, array(), $this->pluginVersion);			
+			 wp_enqueue_style('fontawesome', 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', '', '4.7.0', 'all'); 
 		}
 		
 			
