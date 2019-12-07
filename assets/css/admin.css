@@ -8,3 +8,45 @@
  * Updated     : 07-12-2019
  * Copyright   : (c) 2020 Mark Dijkstra
  */
+
+
+
+.td__row{
+   width: 100%;
+   float: left;
+}
+
+.td__row--2{
+   width: calc(50% - 20px);
+   float: left;
+   padding-right: 20px;
+}
+
+.td__row--2 span{
+   float: right;
+}
+
+.rating__circle{
+   width: 30px;
+   height: 30px;
+   border-radius: 50%;
+   background-color: green;
+   color: #fff;
+   text-align: center;
+   font-weight: bold;
+   line-height: 30px 
+}
+
+.kv--table strong,
+.kv--table.wp-list-table th{
+   font-weight: bold;
+}
+
+.icon--green{
+   color:green;
+   margin-left: 30px
+}
+.icon--red{
+   color:red;
+   margin-left: 30px
+}
