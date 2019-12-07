@@ -32,6 +32,7 @@ if(!class_exists('WP_Klantenvertellen_Core')) {
 			$this->pluginDirPath  = WP_PLUGIN_DIR.'/' . $this->pluginDirName;
 			$this->pluginUrl      = plugins_url('/' . $this->pluginDirName);                                   
             $this->pluginPagesDir = $this->pluginDirPath . '/pages';
+			$this->adminCssPath  = plugins_url($this->pluginDirName . '/assets/css/admin.css');  
 			
 			$this->dashboardPage = $this->pluginPagesDir . '/dashboard.php';
 			$this->reviewsPage   = $this->pluginPagesDir . '/reviews.php';
@@ -58,7 +59,8 @@ if(!class_exists('WP_Klantenvertellen_Core')) {
 		{
             add_action('admin_init', array($this, 'adminInit'));
             add_action('admin_menu', array($this, 'registerMenu'));
-            add_action('admin_menu', array($this, 'subMenuPageFix'));
+            add_action('admin_menu', array($this, 'subMenuPageFix'));			
+			add_action('admin_enqueue_scripts', array($this, 'addScriptsStylesAdmin'));
 
         }
         
@@ -73,8 +75,17 @@ if(!class_exists('WP_Klantenvertellen_Core')) {
             // Localization
             //load_plugin_textdomain($this->mopoName, false, basename(dirname( __FILE__ )).'/languages/');
         }
-
-
+		
+		/**
+		* REGISTER SCRIPTS AND STYLES.(ADMIN)
+		*
+		* @since : 1.0.0
+		*/
+		public function addScriptsStylesAdmin(){
+			wp_enqueue_style('klantenvertellen-core-css', $this->adminCssPath, array(), $this->pluginVersion);
+		}
+		
+			
 		/**
 		* REGISTER/UN-REGISTER MENU/SUBMENU'S.
 		*
