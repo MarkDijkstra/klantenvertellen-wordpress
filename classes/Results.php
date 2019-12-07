@@ -79,9 +79,24 @@ if(!class_exists('WP_Klantenvertellen_Results'))
             
         }
 
-        public static function getContent()
+        public static function getContentByReviewId($revId = false)
         {
-            $table = $wpdb->prefix . parent::KVCONTENTTABLE;	
+            
+            if ($revId !== false ) {
+                
+                global $wpdb;
+               
+                $table = $wpdb->prefix . parent::KVCONTENTTABLE;	
+                
+
+                $results = $wpdb->get_results(
+                    $wpdb->prepare("SELECT * FROM $table WHERE reviewid = %s", $revId)
+                , ARRAY_A);
+
+                return $results;
+                
+            }
+           
         }
 
         public static function getAll()
